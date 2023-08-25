@@ -5,7 +5,6 @@ import de.uulm.sp.softvare.distillery.parser.DNFParser;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -21,11 +20,11 @@ public class DNF {
         }
     }
 
-    public final HashMap<String, Integer> literals;
+    public final List<String> literals;
     public final List<Product> products;
 
     public DNF() {
-        this.literals = new HashMap<>();
+        this.literals = new ArrayList<>();
         this.products = new ArrayList<>();
     }
 

@@ -37,9 +37,13 @@ public class DNFListener extends DNFBaseListener {
     @Override
     public void enterLiteral(DNFParser.LiteralContext ctx) {
         String literal = ctx.getText();
-        Integer key =
-                this.currentDNF.literals.putIfAbsent(literal, this.currentDNF.literals.size());
+        int index = this.currentDNF.literals.indexOf(literal);
 
-        this.currentProduct.literals.add(key);
+        if (index == -1) {
+            index = this.currentDNF.literals.size();
+            this.currentDNF.literals.add(literal);
+        }
+
+        this.currentProduct.literals.add(index);
     }
 }
