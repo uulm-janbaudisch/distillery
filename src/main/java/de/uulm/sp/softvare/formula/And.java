@@ -7,7 +7,7 @@ public class And implements Node {
 
     private List<Node> children;
 
-    private final static String OPERATOR = "+";
+    private static final String OPERATOR = "+";
 
     public And(List<Node> children) {
         this.children = children;
@@ -15,6 +15,10 @@ public class And implements Node {
 
     @Override
     public String toString() {
-        return "(" + children.stream().map( child -> child.toString()).collect(Collectors.joining(OPERATOR)) + ")";
+        return "("
+                + children.stream()
+                        .map(child -> child.toString())
+                        .collect(Collectors.joining(OPERATOR))
+                + ")";
     }
 }

@@ -11,6 +11,7 @@ public class Literal implements Node {
 
     @Override
     public String toString() {
-        return (literal < 0 ? "-" : "") + id; // Currently uses id in formulas instead of literal index 
+        return (literal < 0 ? "-" : "")
+                + id; // Currently uses id in formulas instead of literal index
     }
 }
