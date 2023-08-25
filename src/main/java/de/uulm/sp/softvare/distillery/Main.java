@@ -6,6 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import de.uulm.sp.softvare.compactor.CompactStrategy;
+import de.uulm.sp.softvare.compactor.GreedyCompactor;
+
 public class Main {
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
@@ -21,5 +24,12 @@ public class Main {
         }
 
         List<DNF> dnfs = DNF.parseFile(path);
+
+        System.out.println("--------- Results of greedy heuristic: ---------");
+        CompactStrategy strategy = new GreedyCompactor();
+        for (DNF dnf : dnfs) {
+            System.out.println(strategy.compactDnf(dnf).toString());
+        }
     }
+
 }

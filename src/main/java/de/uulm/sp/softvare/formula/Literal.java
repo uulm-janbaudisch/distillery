@@ -14,4 +14,12 @@ public class Literal implements Node {
         return (literal < 0 ? "-" : "")
                 + id; // Currently uses id in formulas instead of literal index
     }
+
+    public int getLiteral() {
+        return literal;
+    }
+
+    public String getId() {
+        return id;
+    }
 }
