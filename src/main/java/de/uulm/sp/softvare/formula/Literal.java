@@ -1,5 +1,8 @@
 package de.uulm.sp.softvare.formula;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Literal implements Node {
     private int literal;
     private String id;
@@ -21,5 +24,20 @@ public class Literal implements Node {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public int getNumberOfContainedLiterals() {
+        return 1;
+    }
+
+    @Override
+    public Node flatten() {
+        return this;
+    }
+
+    @Override
+    public List<Node> getChildren() {
+        return new ArrayList<>();
     }
 }

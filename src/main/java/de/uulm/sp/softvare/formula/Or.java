@@ -19,10 +19,42 @@ public class Or implements Node {
         children.add(right);
     }
 
+    public List<Node> getChildren() {
+        return children;
+    }
+
     @Override
     public String toString() {
         return children.stream()
                 .map(child -> child.toString())
                 .collect(Collectors.joining(OPERATOR));
+    }
+
+    @Override
+    public int getNumberOfContainedLiterals() {
+        int result = 0;
+        for (Node child : children) {
+            result += child.getNumberOfContainedLiterals();
+        }
+        return result;
+    }
+
+    @Override
+    public Node flatten() {
+        if (children.size() == 1) {
+            return children.get(0);
+        } else {
+            List<Node> newParts = new ArrayList<>();
+            for (Node child : children) {
+                if (child instanceof Or) {
+                    for (Node grandchild : child.getChildren()) {
+                        newParts.add(grandchild.flatten());
+                    }
+                } else {
+                    newParts.add(child.flatten());
+                }
+            }
+            return new Or(newParts);
+        }
     }
 }

@@ -28,6 +28,14 @@ public class DNF {
         this.products = new ArrayList<>();
     }
 
+    public int getNumberOfContainedLiterals() {
+        int result = 0;
+        for (Product solution : products) {
+            result += solution.literals.size();
+        }
+        return result;
+    }
+
     public static List<DNF> parseFile(Path path) throws IOException {
         // Completely read file.
         CharStream input = CharStreams.fromPath(path);

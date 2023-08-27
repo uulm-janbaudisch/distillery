@@ -1,3 +1,11 @@
 package de.uulm.sp.softvare.formula;
 
-public interface Node {}
+import java.util.List;
+
+public interface Node {
+    public int getNumberOfContainedLiterals();
+
+    public Node flatten();
+
+    public List<Node> getChildren();
+}

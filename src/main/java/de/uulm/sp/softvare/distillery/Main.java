@@ -1,13 +1,13 @@
 package de.uulm.sp.softvare.distillery;
 
+import de.uulm.sp.softvare.compactor.CompactStrategy;
+import de.uulm.sp.softvare.compactor.GreedyCompactor;
+import de.uulm.sp.softvare.formula.Node;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
-import de.uulm.sp.softvare.compactor.CompactStrategy;
-import de.uulm.sp.softvare.compactor.GreedyCompactor;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -28,8 +28,14 @@ public class Main {
         System.out.println("--------- Results of greedy heuristic: ---------");
         CompactStrategy strategy = new GreedyCompactor();
         for (DNF dnf : dnfs) {
-            System.out.println(strategy.compactDnf(dnf).toString());
+            int literalsBefore = dnf.getNumberOfContainedLiterals();
+            Node result = strategy.compactDnf(dnf);
+            System.out.println(result.flatten().toString());
+            System.out.println(
+                    "#Literals before:"
+                            + literalsBefore
+                            + " #Literals after:"
+                            + result.getNumberOfContainedLiterals());
         }
     }
-
 }
